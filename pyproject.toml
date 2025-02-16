@@ -17,3 +17,6 @@ coverage = "^7.6.12"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+ant = "ant.main:main"
