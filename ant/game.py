@@ -14,7 +14,7 @@ class Game:
                  final_file: Path,
                  gui: bool,
                  logger_obj,
-                 width: int, height: int,
+                 nb_cols: int, nb_lines: int,
                  ) -> None:
         """Object initialization."""
         # Given arguments
@@ -26,40 +26,41 @@ class Game:
         self._gui = gui
         self._logger = logger_obj
         self._logger.info("test")
-        self._width = width
-        self._height = height
+        self._nb_cols = nb_cols
+        self._nb_lines = nb_lines
         
 
     def _init(self):
         # Create the clock
         self._clock = pygame.time.Clock()
 
-        # Create the elements
-        self._board = Board(self._screen, self._nb_lines, self._nb_cols, self._tile_size)
-        self._ant = Ant.create(self._board)
-
         # Screen creation
-        screen_size = (self._width*self._tile_size,
-                       self._height*self._tile_size)
+        screen_size = (self._nb_cols*self._tile_size,
+                       self._nb_lines*self._tile_size)
         self._screen = pygame.display.set_mode(screen_size)
-        self._nb_lines = self._height // self._tile_size
-        self._nb_cols = self._width // self._tile_size
+
+        # Create the board and ant
+        self._board = Board(self._screen, self._nb_lines, self._nb_cols, self._tile_size)
+        self._ant = Ant.create(self._nb_lines, self._nb_cols)
 
         # Checks if the final output file exists
         if self._final_file.exists():
             with open(self._final_file, 'r') as f:
                 final_states = yaml.safe_load(f)
-            print (final_states)
             self._final_states = final_states
             self._logger.info("The output file was successfully readed.")
         else:
             self._final_states = []
+            with self._final_file.open("w") as fd:
+                yaml.safe_dump(self._final_states, fd)
 
     def start(self) -> None:
         """Start the game."""
         self._logger.info("Game started.")
-        # Initialize pygame
-        pygame.init()
+        
+        if self._gui:
+            # Initialize pygame
+            pygame.init()
 
         # Initialize game
         self._init()
@@ -69,8 +70,9 @@ class Game:
         # Start pygame loop
         while i < self._nb_steps and flag:
 
-            # Wait 1/FPS second
-            self._clock.tick(self._fps)
+            if self._gui:
+                # Wait 1/FPS second
+                self._clock.tick(self._fps)
 
             # Check for quit : closing window
             for event in pygame.event.get():
@@ -102,5 +104,6 @@ class Game:
         with open(self._final_file, 'w') as f:
             yaml.safe_dump(self._final_states, f)
         
-        # Terminate pygame
-        pygame.quit()
+        if self._gui:
+            # Terminate pygame
+            pygame.quit()

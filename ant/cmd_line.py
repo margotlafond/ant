@@ -29,7 +29,7 @@ def read_args() -> argparse.Namespace:
                         help="Color of the ant.")
 
     # Scores
-    parser.add_argument("--state_file", "-F", type = str, default = "langton_state.yml",
+    parser.add_argument("--final-file", "-F", type = str, default = "langton_state.yml",
                         help = "Path of the state file")
 
     # GUI

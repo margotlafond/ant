@@ -9,6 +9,7 @@ from .tile import Tile
 from .ant import Ant
 from .dir import Dir
 
+BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 class Board:
@@ -37,8 +38,9 @@ class Board:
         return self._tiles[y][x]
 
     def draw_board(self, ant: Ant, color: tuple) -> None:
-        for tile in self._tiles:
-            tile.draw(self._screen, self._tile_size)
+        for list in self._tiles:
+            for tile in list:
+                tile.draw(self._screen, self._tile_size)
         ant.draw(self._screen, self._tile_size, color)
 
     def output(self, final_states: list[dict], ant: Ant, step: int) -> list[dict]:
@@ -48,16 +50,15 @@ class Board:
         schema = ["" for y in range(self._nb_lines)]
         for y in range(self._nb_lines):
             for tile in self._tiles[y]:
-                if tile.color == WHITE:
-                    schema[y] += " "
-                else:
+                if tile.color == BLACK:
                     schema[y] += "X"
-
-        final_states.append({"step": step, "x": ant.x, "y": ant.y, "direction": directions[ant.dir], "schema": schema})
-
+                else:
+                    schema[y] += " "
         # Prints the final state
         print(f"Step : {step}")
         print(f"{ant.x}, {ant.y}, {directions[ant.dir]}")
         print("\n".join(schema))
+
+        final_states.append({"step": step, "x": ant.x, "y": ant.y, "direction": directions[ant.dir], "schema": schema})
 
         return final_states

@@ -3,14 +3,15 @@
 # Standard
 import logging
 import colorlog
+from pathlib import Path
 
 # First party
 from .cmd_line import read_args
 from .game import Game
 
 # Constants
-HEIGHT = 500
-WIDTH = 300
+NB_LINES = 24
+NB_COLS = 32
 
 
 def main() -> None: # noqa: D103
@@ -40,5 +41,5 @@ def main() -> None: # noqa: D103
 
     # Start game
     Game(nb_steps = args.number_steps, tile_size = args.tile_size, 
-         fps = args.fps, ant_color = args.ant_color, score_file = args.score_file,
-         gui = args.gui, logger_obj = args.logger_obj, width = WIDTH, height = HEIGHT)
+         fps = args.fps, ant_color = args.ant_color, final_file = Path(args.final_file),
+         gui = args.gui, logger_obj = logger, nb_cols = NB_COLS, nb_lines = NB_LINES).start()

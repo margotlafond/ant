@@ -2,7 +2,6 @@
 import typing
 from .dir import Dir
 from .tile import Tile
-from .board import Board
 
 # Third party
 import pygame
@@ -72,8 +71,8 @@ class Ant:
             tile.color = BLACK
 
         # Moves the ant
-        self._x += self._dir[0]
-        self._y += self._dir[1]
+        self._x += self._dir.value[0]
+        self._y += self._dir.value[1]
 
     def draw(self, screen: pygame.Surface, tile_size: int, color: tuple) -> None:
         """Draws the ant with an arrow pointing in its direction."""
@@ -111,12 +110,12 @@ class Ant:
         pygame.draw.polygon(screen, color, points)
 
     @classmethod
-    def create(cls, board: Board) -> typing.Self:
+    def create(cls, nb_lines: int, nb_cols: int) -> typing.Self:
         """Creates an ant directed UP and places it randomly on the board."""
 
         # Chooses the beginning tile
         random.seed()
-        x = board.nb_cols//2
-        y = 0, board.nb_lines//2
+        x = nb_cols//2
+        y = nb_lines//2
 
         return cls(x, y, direction = Dir.UP)
