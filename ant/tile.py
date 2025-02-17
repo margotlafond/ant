@@ -15,10 +15,20 @@ class Tile:
         """The x coordinate (i.e.: column index) of the tile."""
         return self._x
     
+    @x.setter
+    def x(self, new_x: int) -> None:
+        """Set the new x."""
+        self._x = new_x
+
     @property
     def y(self) -> int:
         """The y coordinate (i.e.: line index) of the tile."""
         return self._y
+    
+    @y.setter
+    def y(self, new_y: int) -> None:
+        """Set the new y."""
+        self._y = new_y
 
     @property
     def color(self) -> tuple:

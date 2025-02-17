@@ -86,7 +86,7 @@ class Game:
 
             # Update object
             tile = self._board.get_tile(self._ant.x, self._ant.y)
-            self._ant.move(tile)
+            self._board.move(tile, self._ant)
 
             # Display
             if self._gui:

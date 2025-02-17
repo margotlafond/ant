@@ -4,10 +4,8 @@ import argparse
 # Global constants
 DEFAULT_STEPS = 10
 DEFAULT_TILE_SIZE = 20
-ANT_DEF_COLOR = (0, 0, 0)
+ANT_DEF_COLOR = (255, 0, 0)
 DEFAULT_FPS = 3
-MIN_FPS = 3
-MAX_FPS = 30
 
 def read_args() -> argparse.Namespace:
     """Read command line arguments."""
@@ -38,8 +36,7 @@ def read_args() -> argparse.Namespace:
     
     # FPS
     parser.add_argument("--fps", type = int, default = DEFAULT_FPS,
-                        help="Set the number of frames per second."
-                        f" Must be between {MIN_FPS} and {MAX_FPS}.")
+                        help="Set the number of frames per second.")
 
     # Verbose
     parser.add_argument("--verbose", "-v", dest = "verbose", action = "count", default = 0, 

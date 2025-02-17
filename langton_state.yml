@@ -1,0 +1,29 @@
+- direction: DOWN
+  schema:
+  - '                                '
+  - '                                '
+  - '                                '
+  - '               XX               '
+  - '          XX  X  X  XX          '
+  - '         X  X  X  XXXX XX X     '
+  - '        XXX   X    XXX  XXX     '
+  - '        X XXXXXX   XXXX   X     '
+  - '               XXX  XX XX  X    '
+  - '          XXXX   XXX XX    X    '
+  - '           XXXXXX      X   X    '
+  - '            X X  XX   XXX  X    '
+  - '            X  XX  XXX X   X    '
+  - '            X  XXXXXX      X    '
+  - '              XX     XXX  X     '
+  - '           X     XXXX X XX      '
+  - '           X XX     XXX         '
+  - '            XX    X  X          '
+  - '             XX    XX           '
+  - '                                '
+  - '                                '
+  - '                                '
+  - '                                '
+  - '                                '
+  step: 1000
+  x: 24
+  y: 6
