@@ -1,6 +1,6 @@
 """Ant package."""
-from .dir import Dir
-from .ant import Ant
-from .tile import Tile
+from ant.dir import Dir
+from ant.ant import Ant
+from ant.tile import Tile
 
 __all__ = ["Dir", "Ant", "Tile"]
