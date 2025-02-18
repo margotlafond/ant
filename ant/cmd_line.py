@@ -6,6 +6,8 @@ DEFAULT_STEPS = 10
 DEFAULT_TILE_SIZE = 20
 ANT_DEF_COLOR = (255, 0, 0)
 DEFAULT_FPS = 3
+NB_LINES = 24
+NB_COLS = 32
 
 def read_args() -> argparse.Namespace:
     """Read command line arguments."""
@@ -14,13 +16,19 @@ def read_args() -> argparse.Namespace:
             description = "Langton's Ant.",
             formatter_class = argparse.ArgumentDefaultsHelpFormatter)
 
-    # Checkerboard arguments
+    # Board arguments
     parser.add_argument("--number-steps", "-S", type = int,
                         default = DEFAULT_STEPS,
                         help = "Number of steps made by the ant.")
     parser.add_argument("--tile-size", "-T", type = int,
                         default = DEFAULT_TILE_SIZE,
                         help="Tile size, in pixels")
+    parser.add_argument("--nb-cols", "-C", type = int,
+                        default = NB_COLS,
+                        help="Number of columns.")
+    parser.add_argument("--nb-lines", "-L", type = int,
+                        default = NB_LINES,
+                        help="Number of lines.")
 
     # Colors
     parser.add_argument("--ant-color", default = ANT_DEF_COLOR,
@@ -32,7 +40,7 @@ def read_args() -> argparse.Namespace:
 
     # GUI
     parser.add_argument("--gui", "-G", type = bool, default = False,
-                        help = "Path of the state file")
+                        help = "True if GUI mode is on, otherwise False.")
     
     # FPS
     parser.add_argument("--fps", type = int, default = DEFAULT_FPS,

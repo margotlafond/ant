@@ -1,9 +1,12 @@
+# Third party
 import pygame
 
+# First party
 from .tile import Tile
 from .ant import Ant
 from .dir import Dir
 
+# Constants
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BLUE = (193, 225, 255)
@@ -34,6 +37,7 @@ class Board:
         return self._tiles[y][x]
 
     def draw_board(self, ant: Ant, color: tuple) -> None:
+        """Draws the board."""
         for list in self._tiles:
             for tile in list:
                 tile.draw(self._screen, self._tile_size)
@@ -63,6 +67,7 @@ class Board:
         """
         Moves the ant : first checks the tile color, then turns, then changes the tile color, and then moves.
         Also grows the board if the ant is about to leave it.
+        A blue tile means that the tile is white but has been visited.
         """
         # Changes the color and direction
         if tile.color == BLACK:
