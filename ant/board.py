@@ -1,8 +1,3 @@
-# à faire : fonctions pour : de quelle couleur est la tile x, y
-# faire défiler défiler board
-# draw
-# output
-
 import pygame
 
 from .tile import Tile

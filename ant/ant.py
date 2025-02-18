@@ -77,7 +77,7 @@ class Ant:
         center_y = self._y*tile_size + tile_size//2
         half_size = tile_size//4
         
-        # Determine the triangle vertices based on direction
+        # Determine the triangle direction
         if self._dir == Dir.UP:
             points = [
                 (center_x, center_y - half_size),
