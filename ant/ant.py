@@ -9,7 +9,6 @@ import random
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0,)
-BLUE = (193, 225, 255)
 
 class Ant:
     """The ant."""
@@ -55,24 +54,21 @@ class Ant:
         """The x coordinate (i.e.: column index) of the ant."""
         return self._x
     
+    @x.setter
+    def x(self, new_x: int) -> None:
+        """Set the new x."""
+        self._x = new_x
+    
     @property
     def y(self) -> int:
         """The y coordinate (i.e.: line index) of the ant."""
         return self._y
+    
+    @y.setter
+    def y(self, new_y: int) -> None:
+        """Set the new y."""
+        self._y = new_y
 
-    def move(self, tile: Tile) -> None:
-        """Moves the ant : first checks the tile color, then turns, then changes the tile color, and then moves"""
-        # Changes the color and direction
-        if tile.color == BLACK:
-            self.turn_left()
-            tile.color = BLUE # This tile is white but has been visited
-        else:
-            self.turn_right()
-            tile.color = BLACK
-
-        # Moves the ant
-        self._x += self._dir.value[0]
-        self._y += self._dir.value[1]
 
     def draw(self, screen: pygame.Surface, tile_size: int, color: tuple) -> None:
         """Draws the ant with an arrow pointing in its direction."""
@@ -81,7 +77,7 @@ class Ant:
         center_y = self._y*tile_size + tile_size//2
         half_size = tile_size//4
         
-        # Determine the triangle vertices based on direction
+        # Determine the triangle direction
         if self._dir == Dir.UP:
             points = [
                 (center_x, center_y - half_size),
