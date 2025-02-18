@@ -1,12 +1,11 @@
 # First party
-import typing
 from .dir import Dir
-from .tile import Tile
 
 # Third party
 import pygame
-import random
+import typing
 
+# Constants
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0,)
 
@@ -25,6 +24,7 @@ class Ant:
 
     @dir.setter
     def dir(self, direction: Dir) -> None:
+        """Set the new direction."""
         self._dir = direction
 
     def turn_right(self) -> None:
@@ -72,7 +72,7 @@ class Ant:
 
     def draw(self, screen: pygame.Surface, tile_size: int, color: tuple) -> None:
         """Draws the ant with an arrow pointing in its direction."""
-        # Calculate the center of the tile where the ant is located
+        # Calculate the center of the tile where the ant is
         center_x = self._x*tile_size + tile_size//2
         center_y = self._y*tile_size + tile_size//2
         half_size = tile_size//4
@@ -107,10 +107,9 @@ class Ant:
 
     @classmethod
     def create(cls, nb_lines: int, nb_cols: int) -> typing.Self:
-        """Creates an ant directed UP and places it randomly on the board."""
+        """Creates an ant directed UP and places it on the middle of the board."""
 
-        # Chooses the beginning tile
-        random.seed()
+        # Chooses the beginning tile (middle tile)
         x = nb_cols//2
         y = nb_lines//2
 

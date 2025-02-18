@@ -3,10 +3,8 @@
 # Standard
 import enum
 
-
 class Dir(enum.Enum):
     """Direction of movement."""
-
     UP = (0, -1)
     DOWN = (0, 1)
     LEFT = (-1, 0)

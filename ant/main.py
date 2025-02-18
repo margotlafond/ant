@@ -9,13 +9,10 @@ from pathlib import Path
 from .cmd_line import read_args
 from .game import Game
 
-# Constants
-NB_LINES = 24
-NB_COLS = 32
-
 
 def main() -> None: # noqa: D103
 
+    # Verbose
     logger = logging.getLogger("foo")
     color_fmt = colorlog.ColoredFormatter(
     "%(log_color)s[%(asctime)s][%(levelname)s] %(message)s",
@@ -42,4 +39,4 @@ def main() -> None: # noqa: D103
     # Start game
     Game(nb_steps = args.number_steps, tile_size = args.tile_size, 
          fps = args.fps, ant_color = args.ant_color, final_file = Path(args.final_file),
-         gui = args.gui, logger_obj = logger, nb_cols = NB_COLS, nb_lines = NB_LINES).start()
+         gui = args.gui, logger_obj = logger, nb_cols = args.nb_cols, nb_lines = args.nb_lines).start()
