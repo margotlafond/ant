@@ -1,11 +1,9 @@
 # First party
 import typing
 from .dir import Dir
-from .tile import Tile
 
 # Third party
 import pygame
-import random
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0,)
@@ -109,8 +107,7 @@ class Ant:
     def create(cls, nb_lines: int, nb_cols: int) -> typing.Self:
         """Creates an ant directed UP and places it randomly on the board."""
 
-        # Chooses the beginning tile
-        random.seed()
+        # Chooses the beginning tile (middle tile)
         x = nb_cols//2
         y = nb_lines//2
 
